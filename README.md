@@ -4,7 +4,7 @@ StripeGate
 Simplify your Stripe payment gateway implementation with StripeGate,<br>
 A lightweight Android library that condenses the complexity of integrating Stripe into just a few lines of code.
 
-![](https://github.com/0xRahad/StripeGate/blob/master/app/src/StripeGate.png)
+![](https://github.com/0xRahad/StripeGate/blob/master/StripeGate.png)
 
 ## Features
 
