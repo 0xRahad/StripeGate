@@ -39,7 +39,7 @@ dependencies {
     implementation 'com.squareup.retrofit2:converter-gson:2.9.0'
 
     //stripe sdk
-    implementation 'com.stripe:stripe-android:20.35.2'
+    implementation 'com.stripe:stripe-android:20.36.0'
 
     def lottieVersion = "3.4.0"
     implementation "com.airbnb.android:lottie:$lottieVersion"

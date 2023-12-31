@@ -85,7 +85,6 @@ public class StripeGate {
 
 
     public void Integrate(String amount, String currency){
-
         if (PUBLISHABLE_KEY == null || SECRET_KEY == null) {
             Log.e("error", "Publishable Key or Secret Key is empty ");
             return; // Return early if keys are null
@@ -94,7 +93,7 @@ public class StripeGate {
         this.currency = currency;
         PaymentConfiguration.init(context, PUBLISHABLE_KEY);
         createCustomerID();
-        getPaymentInfo(amount,currency);
+        getPaymentInfo(this.amount, this.currency);  // Use class fields here
     }
 
     public void Apply() {
@@ -118,7 +117,7 @@ public class StripeGate {
     }
 
 
-    public void createCustomerID(){
+    private void createCustomerID(){
         Call<CustomerResponse> call = RetrofitClient.getInstance().getAPI().getCustomerID("Bearer "+ SECRET_KEY);
         call.enqueue(new Callback<CustomerResponse>() {
             @Override
@@ -139,7 +138,7 @@ public class StripeGate {
         });
     }
 
-    public void getEphemeralKey(String id){
+    private void getEphemeralKey(String id){
         Call<EphemeralResponse> keys = RetrofitClient.getInstance().getAPI().getEphemeralKeys("Bearer "+SECRET_KEY
                 ,"2023-10-16",customerID);
 
