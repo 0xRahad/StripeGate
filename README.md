@@ -54,17 +54,16 @@ A lightweight Android library that condenses the complexity of integrating Strip
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
                 stripeGate.Apply(new StripeGate.PaymentResultListener() {
                         @Override
                         public void onPaymentResult(boolean isSuccessful) {
                             if (isSuccessful){
                                 Toast.makeText(CheckoutActivity.this, "Purchashed Successfully", Toast.LENGTH_SHORT).show();
                             }else {
-                                Toast.makeText(CheckoutActivity.this, "Purchashed Failed", Toast.LENGTH_SHORT).show();
+                                Toast.makeText(CheckoutActivity.this, "Failed to purchashe", Toast.LENGTH_SHORT).show();
                             }
                         }
-                    });
+                });
             }
         });
    ```
