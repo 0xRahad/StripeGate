@@ -20,7 +20,7 @@ A lightweight Android library that condenses the complexity of integrating Strip
 
 
    ```gradle
-   implementation 'com.github.0xRahad:StripeGate:3.0.0'
+   implementation 'com.github.0xRahad:StripeGate:4.0.0'
    ```
 
 2. Add it in your root settings.gradle:
