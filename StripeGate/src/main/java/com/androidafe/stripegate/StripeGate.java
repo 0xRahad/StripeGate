@@ -41,14 +41,15 @@ import retrofit2.Response;
 
 public class StripeGate {
 
-    PaymentSheet paymentSheet;
-    String customerID, ephemeralKey, clientSecret, amount, currency;
+    private PaymentSheet paymentSheet;
+    private String customerID, ephemeralKey, clientSecret, amount, currency;
     Context context;
     ProgressDialog dialog;
 
-    public static String SECRET_KEY;
-    public static String PUBLISHABLE_KEY;
-
+    private static String SECRET_KEY;
+    private static String PUBLISHABLE_KEY;
+    private boolean paymentSuccessful;
+    private PaymentResultListener paymentResultListener;
     public static void setSecretKey(String secretKey) {
         SECRET_KEY = secretKey;
     }
@@ -89,17 +90,18 @@ public class StripeGate {
             Log.e("error", "Publishable Key or Secret Key is empty ");
             return; // Return early if keys are null
         }
-        this.amount = amount;
+        this.amount = amount + "00";
         this.currency = currency;
         PaymentConfiguration.init(context, PUBLISHABLE_KEY);
         createCustomerID();
-        getPaymentInfo(this.amount, this.currency);  // Use class fields here
+        getPaymentInfo(this.amount, this.currency);// Use class fields here
     }
 
-    public void Apply() {
+    public void Apply(final PaymentResultListener paymentResultListener) {
 
         if (PUBLISHABLE_KEY == null || SECRET_KEY == null) {
             Log.d("error", "Publishable Key or Secret Key is empty ");
+            paymentResultListener.onPaymentResult(false);
             return; // Return early if keys are null
         }
 
@@ -115,6 +117,7 @@ public class StripeGate {
         },2000);
 
     }
+
 
 
     private void createCustomerID(){
@@ -201,10 +204,19 @@ public class StripeGate {
         if (paymentSheetResult instanceof PaymentSheetResult.Completed){
             customerID = null;
             ephemeralKey = null;
+            paymentSuccessful = true;
             Toast.makeText(context, "Payment Successfull", Toast.LENGTH_SHORT).show();
         }else {
+            paymentSuccessful = false;
             Toast.makeText(context, "Payment Failed", Toast.LENGTH_SHORT).show();
         }
+        if (paymentResultListener != null) {
+            paymentResultListener.onPaymentResult(paymentSuccessful);
+        }
+    }
+
+    public interface PaymentResultListener {
+        void onPaymentResult(boolean isSuccessful);
     }
 
 }
