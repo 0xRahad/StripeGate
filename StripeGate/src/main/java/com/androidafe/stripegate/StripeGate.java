@@ -175,7 +175,7 @@ public class StripeGate {
                     PaymentResponse res = response.body();
                     clientSecret = res.getClientSecret();
                 }else {
-                    Log.d("res", "onError: client secret not found");
+                    Log.d("res", "onError:"+response.errorBody());
                 }
             }
 
