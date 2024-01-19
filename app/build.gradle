@@ -10,8 +10,8 @@ android {
         applicationId "com.androidafe.stripegate"
         minSdk 22
         targetSdk 34
-        versionCode 3
-        versionName "3.1.0"
+        versionCode 4
+        versionName "4.0.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -39,7 +39,7 @@ dependencies {
 
     implementation project(":StripeGate")
 
-
+    implementation 'com.stripe:stripe-android:20.36.1'
 
     def lottieVersion = "3.4.0"
     implementation "com.airbnb.android:lottie:$lottieVersion"
