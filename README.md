@@ -20,7 +20,7 @@ A lightweight Android library that condenses the complexity of integrating Strip
 
 
    ```gradle
-   implementation 'com.github.0xRahad:StripeGate:4.0.0'
+   implementation 'com.github.0xRahad:StripeGate:4.1.0'
    ```
 
 2. Add it in your root settings.gradle:
@@ -48,7 +48,7 @@ A lightweight Android library that condenses the complexity of integrating Strip
         StripeGate.setSecretKey("sk_test_..................");
         
         //Add amount and currency
-        stripeGate.Integrate("1000","usd");
+        stripeGate.Integrate(12.12,"usd");
         
         //now apply this into Pay btn
         button.setOnClickListener(new View.OnClickListener() {
