@@ -85,17 +85,23 @@ public class StripeGate {
 
 
 
-    public void Integrate(String amount, String currency){
+    public void Integrate(String amount, String currency) {
         if (PUBLISHABLE_KEY == null || SECRET_KEY == null) {
             Log.e("error", "Publishable Key or Secret Key is empty ");
             return; // Return early if keys are null
         }
-        this.amount = amount + "00";
+        this.amount = amount;
         this.currency = currency;
         PaymentConfiguration.init(context, PUBLISHABLE_KEY);
         createCustomerID();
-        getPaymentInfo(this.amount, this.currency);// Use class fields here
+        getPaymentInfo(this.amount, this.currency); // Use class fields here
     }
+
+    // Overloaded method to accept double for the amount
+    public void Integrate(double amount, String currency) {
+        Integrate(String.valueOf((long) (amount * 100)), currency);
+    }
+
 
     public void Apply(final PaymentResultListener paymentResultListener) {
 
